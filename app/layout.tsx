@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import {manrope} from "@/fonts/fonts";
 import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import NextProvider from "@/provider/nextUIProvider";
+import Providers from "@/provider/reactQueryProvider";
+import {Header} from "@/components/layout/header";
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +17,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${manrope.className} antialiased`}>
+        <Providers>
+          <NextProvider>
+            <Header/>
+            <main className="w-full py-[4.5rem]">
+              {children}
+            </main>
+          </NextProvider>
+        </Providers>
+      </body>
     </html>
   )
 }
